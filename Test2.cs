@@ -9,6 +9,7 @@ public class Test1 : MonoBehaviour
     public float x;
     public float y;
     public int speed;
+<<<<<<< HEAD
     private void Update()
     {
         x += speed * Time.deltaTime;
@@ -17,4 +18,13 @@ public class Test1 : MonoBehaviour
 
     }
     
+=======
+
+    private void Update()
+    {
+        x += speed * Time.deltaTime;
+        y += 2 * Time.deltaTime;
+        transformCube.position = new Vector3(x, y, 52f);
+    }
+>>>>>>> origin/main
 }
