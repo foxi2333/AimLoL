@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Префаб кулі
-    public Transform firePoint; // Точка, з якої буде вистрілюватись куля
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
+    // The delay between shots in seconds
+    public float shotDelay = 0.0001f;
+
+    // Variable to track when the next shot can be fired
+    private float lastShotTime = 0f;
 
     private void Update()
     {
-        // Перевірка на натискання ЛКМ
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && Time.time >= lastShotTime + shotDelay)
         {
             ShootBullet();
+            lastShotTime = Time.time; // Update the last shot time
         }
     }
 
@@ -18,7 +24,6 @@ public class BulletController : MonoBehaviour
     {
         if (bulletPrefab != null && firePoint != null)
         {
-            // Створюємо кулю з префабу в точці пострілу
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         }
     }

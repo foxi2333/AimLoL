@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed; // Ўвидк≥сть кул≥
+    public float speed = 0.005f; // Ўвидк≥сть кул≥ 
     public float lifeTime = 5f; // „ас до знищенн€ кул≥, €кщо вона не потрапила в об'Їкт
 
     private Rigidbody rb;

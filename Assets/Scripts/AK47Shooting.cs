@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AK47BalleticShooting : MonoBehaviour
 {
-    public Transform gunBarrel; // Місце, де з'являються кулі (ствол)
+    public Transform bulletSpawnPoint; // Місце, де з'являються кулі (ствол)
     public GameObject bulletPrefab; // Префаб кулі
     public float bulletSpeed = 40f; // Початкова швидкість кулі
     public float fireRate = 0.1f; // Швидкість стрільби (пауза між пострілами)
@@ -57,6 +57,7 @@ public class AK47BalleticShooting : MonoBehaviour
     void Fire()
     {
 
+        Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         nextFireTime = Time.time + fireRate;
 
  
