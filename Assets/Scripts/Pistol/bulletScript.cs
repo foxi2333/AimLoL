@@ -2,10 +2,32 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float damage = 20f;
     public float speed = 0.005f; // Швидкість кулі 
     public float lifeTime = 5f; // Час до знищення кулі, якщо вона не потрапила в об'єкт
 
     private Rigidbody rb;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("print4");
+        // Перевіряємо, чи це об'єкт противника
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            print("print1");         // Отримуємо скрипт EnemyHealth з об'єкта, з яким відбулося зіткнення
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+
+            // Якщо скрипт знайдено, завдаємо шкоди
+            if (enemyHealth != null)
+            {
+                print("print2");
+                enemyHealth.TakeDamage(damage);
+            }
+
+            // Знищуємо кулю після зіткнення
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -20,18 +42,5 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.forward * speed;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Перевірка, чи об'єкт, з яким зіткнулася куля, має скрипт з змінною життя
-        //var healthScript = collision.gameObject.GetComponent<Health>();
-
-       // if (healthScript != null)
-       // {
-            // Якщо є змінна життя, віднімаємо 10 одиниць
-      //      healthScript.TakeDamage(10);
-      //  }
-
-        // У будь-якому випадку знищуємо кулю
-       // Destroy(gameObject);
-    }
+    
 }
