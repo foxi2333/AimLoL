@@ -2,50 +2,50 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour
 {
-    // Початкові та кінцеві координати
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public Vector3 startPosition = new Vector3(-3.972f, 0.507f, 4.91f);
     public Vector3 endPosition = new Vector3(-7.063f, 0.507f, 4.91f);
 
-    // Швидкість переміщення (одиниць на секунду)
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
     public float moveSpeed = 2f;
 
-    // Відстань між точками
+    // ВіпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     private float journeyLength;
     private float startTime;
 
-    // Переміщення вперед чи назад
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     private bool movingTowardsEnd = true;
 
     void Start()
     {
-        // Ініціалізація початкових параметрів
-        transform.position = startPosition; // Встановлюємо початкову позицію
-        journeyLength = Vector3.Distance(startPosition, endPosition); // Вираховуємо відстань
-        startTime = Time.time; // Записуємо час початку руху
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        transform.position = startPosition; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        journeyLength = Vector3.Distance(startPosition, endPosition); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        startTime = Time.time; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     }
 
     void Update()
     {
-        // Час, що пройшов з початку руху
+        // пїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         float distanceCovered = (Time.time - startTime) * moveSpeed;
         float fractionOfJourney = distanceCovered / journeyLength;
 
         if (movingTowardsEnd)
         {
-            // Переміщуємо об'єкт по прямій лінії від startPosition до endPosition
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ'пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ startPosition пїЅпїЅ endPosition
             transform.position = Vector3.Lerp(startPosition, endPosition, fractionOfJourney);
         }
         else
         {
-            // Переміщуємо об'єкт по прямій лінії від endPosition до startPosition
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ'пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ endPosition пїЅпїЅ startPosition
             transform.position = Vector3.Lerp(endPosition, startPosition, fractionOfJourney);
         }
 
-        // Якщо об'єкт досягнув кінцевої точки, змінюємо напрямок
+        // пїЅпїЅпїЅпїЅ пїЅпїЅ'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (fractionOfJourney >= 1f)
         {
-            startTime = Time.time; // Оновлюємо час для нового циклу
-            movingTowardsEnd = !movingTowardsEnd; // Змінюємо напрямок
+            startTime = Time.time; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+            movingTowardsEnd = !movingTowardsEnd; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }
 }
