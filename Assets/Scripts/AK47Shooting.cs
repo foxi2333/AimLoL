@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AK47BalleticShooting : MonoBehaviour
 {
+    
+    public AudioSource reloadGunSound;
     public Transform bulletSpawnPoint; // Місце, де з'являються кулі (ствол)
     public GameObject bulletPrefab; // Префаб кулі
     public float bulletSpeed = 40f; // Початкова швидкість кулі
@@ -60,8 +62,7 @@ public class AK47BalleticShooting : MonoBehaviour
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         nextFireTime = Time.time + fireRate;
 
- 
-
+       
         // Відтворення звуку пострілу
         if (gunSound != null)
         {
