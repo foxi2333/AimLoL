@@ -453,6 +453,37 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 19800004, guid: 30b4cc2728d8cec499fad63ba93785a4, type: 3}
   m_PrefabInstance: {fileID: 1428649005}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &501173714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 501173715}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &501173715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501173714}
+  serializedVersion: 2
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: -0.026, y: 0, z: -1.208}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1589464883}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1 &585454297 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1825277479852271657, guid: 885eac34fd0d577439e6670a7ca3777e, type: 3}
@@ -1317,6 +1348,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
       insertIndex: -1
       addedObject: {fileID: 493183548}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: fc395d83212f12345a324b567e58a725, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 501173715}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fc395d83212f12345a324b567e58a725, type: 3}
       insertIndex: -1
@@ -1344,7 +1378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45483b0afc54c994abd874e9e89b295e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 752792192}
+  bulletSpawnPoint: {fileID: 501173715}
   bulletPrefab: {fileID: 6771838093791512327, guid: 480a4869a0f411b459e09d3c07745f39, type: 3}
   bulletSpeed: 40
   fireRate: 0.1
