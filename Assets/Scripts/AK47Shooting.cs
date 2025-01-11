@@ -43,6 +43,7 @@ public class AK47BalleticShooting : MonoBehaviour
         // Перевірка на перезарядку
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < maxAmmoInClip && remainingMagazines > 0)
         {
+            reloadGunSound.Play();
             StartCoroutine(Reload());
         }
 
