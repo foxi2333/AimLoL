@@ -4665,6 +4665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45483b0afc54c994abd874e9e89b295e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadGunSound: {fileID: 0}
   bulletSpawnPoint: {fileID: 269937074}
   bulletPrefab: {fileID: 6771838093791512327, guid: 480a4869a0f411b459e09d3c07745f39, type: 3}
   bulletSpeed: 40
@@ -5065,6 +5066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45483b0afc54c994abd874e9e89b295e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadGunSound: {fileID: 0}
   bulletSpawnPoint: {fileID: 0}
   bulletPrefab: {fileID: 6771838093791512327, guid: 480a4869a0f411b459e09d3c07745f39, type: 3}
   bulletSpeed: 40
