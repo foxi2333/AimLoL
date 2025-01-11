@@ -15,4 +15,5 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);  // Знищуємо об'єкт противника
         }
     }
+    
 }

@@ -1,9 +1,8 @@
 using System.Collections;
 using UnityEngine;
-
-public class AK47BalleticShooting : MonoBehaviour
+using UnityEngine.UI;
+public class AK47BalleticShooting1 : MonoBehaviour
 {
-    
     public AudioSource reloadGunSound;
     public Transform bulletSpawnPoint; // Місце, де з'являються кулі (ствол)
     public GameObject bulletPrefab; // Префаб кулі
@@ -24,12 +23,16 @@ public class AK47BalleticShooting : MonoBehaviour
 
     private bool isReloading = false; // Статус перезарядки
 
+    // Нові параметри для видимості зброї
+    public Renderer gunRenderer; // Рендерер зброї для зміни видимості
+    public bool isGunVisible = true; // Чи видима зброя за замовчуванням
+
     private void Start()
     {
-
         currentAmmo = maxAmmoInClip; // Спочатку в магазині максимальна кількість патронів
         remainingMagazines = maxMagazines; // Спочатку є максимальна кількість магазинів
         UpdateAmmoUI(); // Оновлюємо UI відразу
+        UpdateGunVisibility(); // Оновлюємо видимість зброї при старті
     }
 
     private void Update()
@@ -43,7 +46,6 @@ public class AK47BalleticShooting : MonoBehaviour
         // Перевірка на перезарядку
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && currentAmmo < maxAmmoInClip && remainingMagazines > 0)
         {
-            reloadGunSound.Play();
             StartCoroutine(Reload());
         }
 
@@ -55,15 +57,20 @@ public class AK47BalleticShooting : MonoBehaviour
                 emptyGunSound.Play();
             }
         }
+
+        // Зміна видимості зброї при натисканні клавіші F
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            isGunVisible = !isGunVisible;
+            UpdateGunVisibility();
+        }
     }
 
     void Fire()
     {
-
         Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         nextFireTime = Time.time + fireRate;
 
-       
         // Відтворення звуку пострілу
         if (gunSound != null)
         {
@@ -81,7 +88,6 @@ public class AK47BalleticShooting : MonoBehaviour
         {
             gunAnimator.SetTrigger("Shoot");
         }
-
 
         // Зменшуємо кількість патронів
         currentAmmo--;
@@ -103,16 +109,8 @@ public class AK47BalleticShooting : MonoBehaviour
             yield return new WaitForSeconds(2f); // Тривалість перезарядки (можна налаштувати)
 
             // Перезаряджаємо магазин
-            int ammoToReload = maxAmmoInClip - currentAmmo;
-            if (remainingMagazines > 0)
-            {
-                // Якщо в магазині залишилися патрони, перезаряджаємо
-                if (remainingMagazines > 0)
-                {
-                    currentAmmo = maxAmmoInClip;
-                    remainingMagazines--;
-                }
-            }
+            currentAmmo = maxAmmoInClip;
+            remainingMagazines--;
 
             // Завершення перезарядки
             isReloading = false;
@@ -133,6 +131,15 @@ public class AK47BalleticShooting : MonoBehaviour
         {
             uiManager.UpdateAmmoCount(currentAmmo, maxAmmoInClip);
             uiManager.UpdateMagazineCount(remainingMagazines, maxMagazines);
+        }
+    }
+
+    // Оновлення видимості зброї
+    void UpdateGunVisibility()
+    {
+        if (gunRenderer != null)
+        {
+            gunRenderer.enabled = isGunVisible;
         }
     }
 }
