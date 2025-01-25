@@ -6,6 +6,7 @@ public class WeaponSwitcher : MonoBehaviour
 {
     public GameObject AK47;      // Калашніков
     public GameObject M16;      // M4A4
+    public GameObject Grenade;
 
     private GameObject currentWeapon;
 
@@ -17,6 +18,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         // Вимикаємо M4A4
         M16.SetActive(false);
+        Grenade.SetActive(false);
     }
 
     void Update()
@@ -28,6 +30,10 @@ public class WeaponSwitcher : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha2)) // 2 — M4A4
         {
             SwitchWeapon(M16);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) // 3 - grenade launcher
+        {
+            SwitchWeapon(Grenade);
         }
     }
 
