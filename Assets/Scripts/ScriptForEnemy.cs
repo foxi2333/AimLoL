@@ -26,6 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
             if (audioSource != null)
             {
+                print("TestSound");
                 audioSource.PlayOneShot(SoundeOfHit, 0.7F);
             }
             // якщо здоров'€ менше або р≥вне нулю, знищуЇмо об'Їкт

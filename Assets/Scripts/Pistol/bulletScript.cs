@@ -2,21 +2,25 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AudioClip SoundeOfHit;
+    public AudioSource audioSource;
+    //public float PlayOneShot;
     public float damage = 20f;
     public float speed = 0.005f; // Ўвидк≥сть кул≥ 
     public float lifeTime = 5f; // „ас до знищенн€ кул≥, €кщо вона не потрапила в об'Їкт
 
     private Rigidbody rb;
-
+  
     private void OnCollisionEnter(Collision collision)
     {
         print("print4");
         // ѕерев≥р€Їмо, чи це об'Їкт противника
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            audioSource.PlayOneShot(SoundeOfHit, 0.7F);
             print("print1");         // ќтримуЇмо скрипт EnemyHealth з об'Їкта, з €ким в≥дбулос€ з≥ткненн€
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-
+            
             // якщо скрипт знайдено, завдаЇмо шкоди
             if (enemyHealth != null)
             {
@@ -31,6 +35,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         // ќтримуЇмо компонент Rigidbody
         rb = GetComponent<Rigidbody>();
 
