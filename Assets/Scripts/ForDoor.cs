@@ -7,6 +7,7 @@ public class DoorController : MonoBehaviour
     [Header("Двері")]
     public GameObject door; // Об'єкт дверей
     public AudioClip doorDisappearSound; // Звук для зникнення дверей
+    public ParticleSystem doorEffect; // Ефект при зникненні дверей
     private AudioSource audioSource;
 
     [Header("Вороги")]
@@ -52,9 +53,21 @@ public class DoorController : MonoBehaviour
                 audioSource.PlayOneShot(doorDisappearSound);
             }
 
-            // Знищення дверей
-            Destroy(door);
-            isDoorRemoved = true;
+            // Відтворення ефекту
+            if (doorEffect != null)
+            {
+                Instantiate(doorEffect, door.transform.position, Quaternion.identity);
+            }
+
+            // Затримка перед зникненням дверей (щоб ефект встиг відіграти)
+            StartCoroutine(DestroyDoorWithDelay());
         }
+    }
+
+    IEnumerator DestroyDoorWithDelay()
+    {
+        yield return new WaitForSeconds(0.5f); // Час для ефекту (можеш змінити)
+        Destroy(door);
+        isDoorRemoved = true;
     }
 }

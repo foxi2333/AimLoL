@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 6835848325773884089}
   - component: {fileID: 3840231349244966773}
   - component: {fileID: 400634109711031740}
+  - component: {fileID: 1543564417912459872}
   m_Layer: 0
-  m_Name: PistolBullet
+  m_Name: PistolBullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,8 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SoundeOfHit: {fileID: 0}
   audioSource: {fileID: 0}
-  damage: 10
-  speed: 100
+  damage: 50
+  speed: 20
   lifeTime: 5
 --- !u!54 &3840231349244966773
 Rigidbody:
@@ -249,6 +250,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1543564417912459872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6771838093791512327}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871b0528548880a468a419c618ff3389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4305535601142959364
 PrefabInstance:
   m_ObjectHideFlags: 0
