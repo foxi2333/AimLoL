@@ -5,7 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHP = 100;
     public int currentHP;
-
+    
     public Slider hpSlider;
     public GameManager gameManager;  // Посилання на GameManager
 
